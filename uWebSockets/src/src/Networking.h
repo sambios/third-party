@@ -41,7 +41,12 @@
 #define pthread_t DWORD
 #define pthread_self GetCurrentThreadId
 #endif
+
+#ifdef LIBUWS_EXPORTS
 #define WIN32_EXPORT __declspec(dllexport)
+#else 
+#define WIN32_EXPORT 
+#endif //!LIBUWS_EXPORTS
 
 inline void close(SOCKET fd) {closesocket(fd);}
 inline int setsockopt(SOCKET fd, int level, int optname, const void *optval, socklen_t optlen) {
@@ -183,7 +188,7 @@ public:
     Context &operator=(const Context &other);
     ~Context();
     operator bool() {
-        return context;
+        return context != nullptr;
     }
 
     SSL_CTX *getNativeContext() {

@@ -111,7 +111,7 @@ struct Poll {
     }
 
     bool isClosed() {
-        return uv_is_closing((uv_handle_t *) uv_poll);
+        return uv_is_closing((uv_handle_t *) uv_poll) > 0;
     }
 
     uv_os_sock_t getFd() {

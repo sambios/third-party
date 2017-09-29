@@ -485,7 +485,7 @@ public:
     }
 
     bool isShuttingDown() {
-        return state.shuttingDown;
+        return state.shuttingDown ==0 ? false:true;
     }
 
     friend class Node;
