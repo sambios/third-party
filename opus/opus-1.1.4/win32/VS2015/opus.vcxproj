@@ -201,7 +201,15 @@
     </CustomBuildStep>
     <Lib>
       <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>celt.lib;silk_common.lib;silk_fixed.lib;silk_float.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <PostBuildEvent>
+      <Command>copy /Y $(TargetPath) ..\..\..\x86-windows-cl14\lib\opus-$(Configuration).lib</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">
     <ClCompile>
