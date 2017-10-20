@@ -223,7 +223,7 @@ struct WIN32_EXPORT NodeData {
     static void asyncCallback(Async *async);
 
     static int getMemoryBlockIndex(size_t length) {
-        return (length >> 4) + bool(length & 15);
+        return (length >> 4) + ((length & 15) > 0 ? 1:0);
     }
 
     char *getSmallMemoryBlock(int index) {

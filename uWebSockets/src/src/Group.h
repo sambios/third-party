@@ -80,6 +80,7 @@ public:
 
     // Thread safe
     void broadcast(const char *message, size_t length, OpCode opCode);
+    void broadcast_exclude(WebSocket<isServer> *fromWs, const char *message, size_t length, OpCode opCode);
     void setUserData(void *user);
     void *getUserData();
 

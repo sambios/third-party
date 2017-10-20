@@ -238,6 +238,22 @@ void Group<isServer>::broadcast(const char *message, size_t length, OpCode opCod
 }
 
 template <bool isServer>
+void Group<isServer>::broadcast_exclude(uWS::WebSocket<isServer> *fromWs, const char *message, size_t length, OpCode opCode) {
+
+#ifdef UWS_THREADSAFE
+    std::lock_guard<std::recursive_mutex> lockGuard(*asyncMutex);
+#endif
+
+    typename WebSocket<isServer>::PreparedMessage *preparedMessage = WebSocket<isServer>::prepareMessage((char *)message, length, opCode, false);
+    forEach([preparedMessage, fromWs](uWS::WebSocket<isServer> *ws) {
+        if (ws != fromWs) {
+            ws->sendPrepared(preparedMessage);
+        }
+    });
+    WebSocket<isServer>::finalizeMessage(preparedMessage);
+}
+
+template <bool isServer>
 void Group<isServer>::terminate() {
     forEach([](uWS::WebSocket<isServer> *ws) {
         ws->terminate();
