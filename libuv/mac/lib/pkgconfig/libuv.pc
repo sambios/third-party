@@ -1,0 +1,11 @@
+prefix=/Users/hsyuan/clients/main/third_party/libuv/mac
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libuv
+Version: 1.13.1
+Description: multi-platform support library with a focus on asynchronous I/O.
+
+Libs: -L${libdir} -luv -lpthread -ldl 
+Cflags: -I${includedir}
