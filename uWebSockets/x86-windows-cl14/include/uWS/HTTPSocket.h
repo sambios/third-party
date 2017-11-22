@@ -12,7 +12,7 @@ struct Header {
     unsigned int keyLength, valueLength;
 
     operator bool() {
-        return key != nullptr;
+        return key==nullptr;
     }
 
     // slow without string_view!
@@ -44,13 +44,26 @@ struct HttpRequest {
 
     Header getHeader(const char *key, size_t length) {
         if (headers) {
-            for (Header *h = headers; *++h; ) {
+            for (Header *h = headers; h != nullptr; h++) {
                 if (h->keyLength == length && !strncmp(h->key, key, length)) {
                     return *h;
                 }
             }
         }
         return {nullptr, nullptr, 0, 0};
+    }
+
+    bool hasHeader(const char *key, size_t length) {
+        bool have = false;
+        if (headers) {
+            for (Header *h = headers; h != nullptr; h++) {
+                if (h->keyLength == length && !strncmp(h->key, key, length)) {
+                   have = true;
+				   break;
+                }
+            }
+        }
+        return have;
     }
 
     Header getUrl() {

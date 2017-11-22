@@ -63,11 +63,11 @@ public:
     static const unsigned int LONG_MESSAGE_HEADER = isServer ? 14 : 10;
 
 private:
-    static inline bool isFin(char *frame) {return (*((unsigned char *) frame) & 128);}
-    static inline unsigned char getOpCode(char *frame) {return (*((unsigned char *) frame) & 15);}
+    static inline bool isFin(char *frame) {return *((unsigned char *) frame) & 128;}
+    static inline unsigned char getOpCode(char *frame) {return *((unsigned char *) frame) & 15;}
     static inline unsigned char payloadLength(char *frame) {return ((unsigned char *) frame)[1] & 127;}
-    static inline bool rsv23(char *frame) {return (*((unsigned char *) frame) & 48);}
-    static inline bool rsv1(char *frame) {return (*((unsigned char *) frame) & 64);}
+    static inline bool rsv23(char *frame) {return *((unsigned char *) frame) & 48;}
+    static inline bool rsv1(char *frame) {return *((unsigned char *) frame) & 64;}
 
     static inline void unmaskImprecise(char *dst, char *src, char *mask, unsigned int length) {
         for (unsigned int n = (length >> 2) + 1; n; n--) {

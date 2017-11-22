@@ -44,6 +44,10 @@ void Hub::onServerAccept(uS::Socket *s) {
     HttpSocket<SERVER> *httpSocket = new HttpSocket<SERVER>(s);
     delete s;
 
+    //DEBUG
+    printf("Hub::onServerAccept\n");
+
+
     httpSocket->setState<HttpSocket<SERVER>>();
     httpSocket->start(httpSocket->nodeData->loop, httpSocket, httpSocket->setPoll(UV_READABLE));
     httpSocket->setNoDelay(true);

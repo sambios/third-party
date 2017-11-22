@@ -12,6 +12,10 @@ namespace uWS {
 // UNSAFETY NOTE: assumes *end == '\r' (might unref end pointer)
 char *getHeaders(char *buffer, char *end, Header *headers, size_t maxHeaders) {
     for (unsigned int i = 0; i < maxHeaders; i++) {
+        if (buffer > end) {
+            break;
+        }
+        // find next ':' or bankspace, convert all char to lowercase
         for (headers->key = buffer; (*buffer != ':') & (*buffer > 32); *(buffer++) |= 32);
         if (*buffer == '\r') {
             if ((buffer != end) & (buffer[1] == '\n') & (i > 0)) {
@@ -56,6 +60,9 @@ template <bool isServer>
 uS::Socket *HttpSocket<isServer>::onData(uS::Socket *s, char *data, size_t length) {
     HttpSocket<isServer> *httpSocket = (HttpSocket<isServer> *) s;
 
+    //DEBUG
+    printf("Hub::onData length=%d\n", length);
+
     httpSocket->cork(true);
 
     if (httpSocket->contentLength) {
@@ -87,6 +94,7 @@ uS::Socket *HttpSocket<isServer>::onData(uS::Socket *s, char *data, size_t lengt
     char *cursor = data;
     *end = '\r';
     Header headers[MAX_HEADERS];
+    memset(&headers, 0, sizeof(headers));
     do {
         char *lastCursor = cursor;
         if ((cursor = getHeaders(cursor, end, headers, MAX_HEADERS))) {
@@ -95,7 +103,7 @@ uS::Socket *HttpSocket<isServer>::onData(uS::Socket *s, char *data, size_t lengt
             if (isServer) {
                 headers->valueLength = std::max<int>(0, headers->valueLength - 9);
                 httpSocket->missedDeadline = false;
-                if (req.getHeader("upgrade", 7)) {
+                if (req.hasHeader("upgrade", 7)) {
                     if (Group<SERVER>::from(httpSocket)->httpUpgradeHandler) {
                         Group<SERVER>::from(httpSocket)->httpUpgradeHandler((HttpSocket<SERVER> *) httpSocket, req);
                     } else {
@@ -156,7 +164,7 @@ uS::Socket *HttpSocket<isServer>::onData(uS::Socket *s, char *data, size_t lengt
                     }
                 }
             } else {
-                if (req.getHeader("upgrade", 7)) {
+                if (req.hasHeader("upgrade", 7)) {
 
                     // Warning: changes socket, needs to inform the stack of Poll address change!
                     WebSocket<isServer> *webSocket = new WebSocket<isServer>(false, httpSocket);

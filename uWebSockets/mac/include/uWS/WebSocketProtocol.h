@@ -63,11 +63,11 @@ public:
     static const unsigned int LONG_MESSAGE_HEADER = isServer ? 14 : 10;
 
 private:
-    static inline bool isFin(char *frame) {return 1 == (*((unsigned char *) frame) & 128);}
-    static inline unsigned char getOpCode(char *frame) {return 1==(*((unsigned char *) frame) & 15);}
+    static inline bool isFin(char *frame) {return *((unsigned char *) frame) & 128;}
+    static inline unsigned char getOpCode(char *frame) {return *((unsigned char *) frame) & 15;}
     static inline unsigned char payloadLength(char *frame) {return ((unsigned char *) frame)[1] & 127;}
-    static inline bool rsv23(char *frame) {return 1 == (*((unsigned char *) frame) & 48);}
-    static inline bool rsv1(char *frame) {return 1 == (*((unsigned char *) frame) & 64);}
+    static inline bool rsv23(char *frame) {return *((unsigned char *) frame) & 48;}
+    static inline bool rsv1(char *frame) {return *((unsigned char *) frame) & 64;}
 
     static inline void unmaskImprecise(char *dst, char *src, char *mask, unsigned int length) {
         for (unsigned int n = (length >> 2) + 1; n; n--) {
@@ -148,7 +148,7 @@ private:
         } else {
             wState->state.spillLength = 0;
             wState->state.wantsHead = false;
-            wState->remainingBytes = (uint32_t)(payLength - length + MESSAGE_HEADER);
+            wState->remainingBytes = payLength - length + MESSAGE_HEADER;
             bool fin = isFin(src);
             if (isServer) {
                 memcpy(wState->mask, src + MESSAGE_HEADER - 4, 4);

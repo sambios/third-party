@@ -67,6 +67,9 @@ void Group<isServer>::addHttpSocket(HttpSocket<isServer> *httpSocket) {
 
 template <bool isServer>
 void Group<isServer>::removeHttpSocket(HttpSocket<isServer> *httpSocket) {
+    //DEBUG
+    printf("Group<%d>::removeHttpSocket\n", isServer);
+
     if (iterators.size()) {
         iterators.top() = httpSocket->next;
     }
