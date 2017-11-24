@@ -3,6 +3,7 @@
 
 #include "Socket.h"
 #include <string>
+#include <cstdio>
 // #include <experimental/string_view>
 
 namespace uWS {

@@ -16,7 +16,7 @@ enum ListenOptions {
 struct Hub;
 
 template <bool isServer>
-struct WIN32_EXPORT Group : private uS::NodeData {
+struct Group : private uS::NodeData {
 protected:
     friend struct Hub;
     friend struct WebSocket<isServer>;

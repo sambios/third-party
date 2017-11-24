@@ -1,5 +1,5 @@
-#ifndef EPOLL_H
-#define EPOLL_H
+#ifndef UWEBSOCKET_EPOLL_H
+#define UWEBSOCKET_EPOLL_H
 
 #include <sys/epoll.h>
 #include <sys/eventfd.h>

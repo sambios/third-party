@@ -1,10 +1,10 @@
-#!/usr/bin/perl
+#!/usr/local/bin/perl
 
 # Perl c_rehash script, scan all files in a directory
 # and add symbolic links to their hash values.
 
-my $dir = "/Users/hsyuan/clients/main/third_party/openssl/mac";
-my $prefix = "/Users/hsyuan/clients/main/third_party/openssl/mac";
+my $dir = "/Users/hsyuan/openssl-android";
+my $prefix = "/Users/hsyuan/openssl-android";
 
 my $openssl = $ENV{OPENSSL} || "openssl";
 my $pwd;

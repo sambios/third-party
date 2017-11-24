@@ -4,6 +4,8 @@
 #include "Socket.h"
 #include <vector>
 #include <mutex>
+#include <iostream>
+#include <string>
 
 namespace uS {
 
