@@ -105,8 +105,12 @@ public:
             return nullptr;
         }
 
-        ::connect(fd, result->ai_addr, result->ai_addrlen);
+        int ret = ::connect(fd, result->ai_addr, result->ai_addrlen);
         freeaddrinfo(result);
+
+        if (ret < 0) {
+            return nullptr;
+        }
 
         SSL *ssl = nullptr;
         if (secure) {

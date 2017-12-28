@@ -148,7 +148,7 @@ private:
         } else {
             wState->state.spillLength = 0;
             wState->state.wantsHead = false;
-            wState->remainingBytes = payLength - length + MESSAGE_HEADER;
+            wState->remainingBytes = (uint32_t)(payLength - length + MESSAGE_HEADER);
             bool fin = isFin(src);
             if (isServer) {
                 memcpy(wState->mask, src + MESSAGE_HEADER - 4, 4);

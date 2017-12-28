@@ -10,7 +10,7 @@
 
 namespace uWS {
 
-struct Hub : private uS::Node, public Group<SERVER>, public Group<CLIENT> {
+struct WIN32_EXPORT Hub : private uS::Node, public Group<SERVER>, public Group<CLIENT> {
 protected:
     struct ConnectionData {
         std::string path;
@@ -71,6 +71,7 @@ public:
     using Group<SERVER>::onConnection;
     using Group<CLIENT>::onConnection;
     using Group<SERVER>::onTransfer;
+    using Group<CLIENT>::onTransfer;
     using Group<SERVER>::onMessage;
     using Group<CLIENT>::onMessage;
     using Group<SERVER>::onDisconnection;

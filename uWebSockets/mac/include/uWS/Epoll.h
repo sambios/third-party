@@ -1,5 +1,5 @@
-#ifndef EPOLL_H
-#define EPOLL_H
+#ifndef UWEBSOCKET_EPOLL_H
+#define UWEBSOCKET_EPOLL_H
 
 #include <sys/epoll.h>
 #include <sys/eventfd.h>
@@ -13,6 +13,7 @@
 typedef int uv_os_sock_t;
 static const int UV_READABLE = EPOLLIN;
 static const int UV_WRITABLE = EPOLLOUT;
+namespace uS {
 
 struct Poll;
 struct Timer;
@@ -254,4 +255,5 @@ struct Async : Poll {
     }
 };
 
+}
 #endif // EPOLL_H

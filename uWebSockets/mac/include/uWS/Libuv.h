@@ -4,6 +4,8 @@
 #include <uv.h>
 static_assert (UV_VERSION_MINOR >= 3, "µWebSockets requires libuv >=1.3.0");
 
+namespace uS {
+
 struct Loop : uv_loop_t {
     static Loop *createLoop(bool defaultLoop = true) {
         if (defaultLoop) {
@@ -111,7 +113,7 @@ struct Poll {
     }
 
     bool isClosed() {
-        return uv_is_closing((uv_handle_t *) uv_poll) > 0;
+        return uv_is_closing((uv_handle_t *) uv_poll) == 1;
     }
 
     uv_os_sock_t getFd() {
@@ -172,4 +174,5 @@ struct Poll {
     }
 };
 
+}
 #endif // LIBUV_H

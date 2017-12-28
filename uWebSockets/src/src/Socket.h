@@ -111,7 +111,9 @@ protected:
                 socket->nodeData->asyncMutex->lock();
                 socket->nodeData->changePollQueue.push_back(socket);
                 socket->nodeData->asyncMutex->unlock();
-                socket->nodeData->async->send();
+                if (socket->nodeData->async) {
+                    socket->nodeData->async->send();
+                }
             } else {
                 change(socket->nodeData->loop, socket, socket->getPoll());
             }

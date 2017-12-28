@@ -156,7 +156,8 @@ INLINE static void uv_process_endgames(uv_loop_t* loop) {
         break;
 
       default:
-        assert(0);
+          printf("unhandled type=%d", handle->type);
+          assert(0);
         break;
     }
   }

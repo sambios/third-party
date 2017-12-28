@@ -13,6 +13,7 @@
 typedef int uv_os_sock_t;
 static const int UV_READABLE = EPOLLIN;
 static const int UV_WRITABLE = EPOLLOUT;
+namespace uS {
 
 struct Poll;
 struct Timer;
@@ -254,4 +255,5 @@ struct Async : Poll {
     }
 };
 
+}
 #endif // EPOLL_H

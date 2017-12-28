@@ -3,6 +3,7 @@
 
 #include "Socket.h"
 #include <string>
+#include <cstdio>
 // #include <experimental/string_view>
 
 namespace uWS {
@@ -59,7 +60,7 @@ struct HttpRequest {
             for (Header *h = headers; h != nullptr; h++) {
                 if (h->keyLength == length && !strncmp(h->key, key, length)) {
                    have = true;
-				   break;
+                   break;
                 }
             }
         }

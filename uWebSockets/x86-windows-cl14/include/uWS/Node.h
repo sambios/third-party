@@ -4,6 +4,8 @@
 #include "Socket.h"
 #include <vector>
 #include <mutex>
+#include <iostream>
+#include <string>
 
 namespace uS {
 
@@ -105,6 +107,10 @@ public:
 
         ::connect(fd, result->ai_addr, result->ai_addrlen);
         freeaddrinfo(result);
+
+        if (ret < 0) {
+            return nullptr;
+        }
 
         SSL *ssl = nullptr;
         if (secure) {

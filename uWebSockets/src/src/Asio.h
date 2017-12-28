@@ -7,6 +7,8 @@ typedef boost::asio::ip::tcp::socket::native_type uv_os_sock_t;
 static const int UV_READABLE = 1;
 static const int UV_WRITABLE = 2;
 
+namespace uS {
+
 struct Loop : boost::asio::io_service {
 
     static Loop *createLoop(bool defaultLoop = true) {
@@ -181,4 +183,5 @@ struct Poll {
     }
 };
 
+}
 #endif // ASIO_H

@@ -3,6 +3,7 @@
 
 #include "Socket.h"
 #include <string>
+#include <cstdio>
 // #include <experimental/string_view>
 
 namespace uWS {
@@ -56,10 +57,10 @@ struct HttpRequest {
     bool hasHeader(const char *key, size_t length) {
         bool have = false;
         if (headers) {
-            for (Header *h = headers; h != nullptr && h->key != nullptr; h++) {
+            for (Header *h = headers; h != nullptr; h++) {
                 if (h->keyLength == length && !strncmp(h->key, key, length)) {
                    have = true;
-				   break;
+                   break;
                 }
             }
         }

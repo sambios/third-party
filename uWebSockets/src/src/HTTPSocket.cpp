@@ -60,9 +60,6 @@ template <bool isServer>
 uS::Socket *HttpSocket<isServer>::onData(uS::Socket *s, char *data, size_t length) {
     HttpSocket<isServer> *httpSocket = (HttpSocket<isServer> *) s;
 
-    //DEBUG
-    printf("Hub::onData length=%d\n", length);
-
     httpSocket->cork(true);
 
     if (httpSocket->contentLength) {

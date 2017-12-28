@@ -2,6 +2,8 @@
 
 #ifdef USE_EPOLL
 
+namespace uS {
+
 // todo: remove this mutex, have callbacks set at program start
 std::recursive_mutex cbMutex;
 void (*callbacks[16])(Poll *, int, int);
@@ -56,5 +58,7 @@ void Loop::run() {
             postCb(postCbData);
         }
     }
+}
+
 }
 #endif
