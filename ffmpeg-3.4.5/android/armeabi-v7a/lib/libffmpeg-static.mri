@@ -1,0 +1,22 @@
+create libffmpeg-static.a
+addlib libavcodec.a
+addlib libavdevice.a
+addlib libavfilter.a
+addlib libavformat.a
+addlib libavutil.a
+addlib libcrypto.a
+addlib libmp3lame.a
+addlib libogg.a
+addlib libopus.a
+addlib libpostproc.a
+addlib libshine.a
+addlib libssl.a
+addlib libswresample.a
+addlib libswscale.a
+addlib libvorbis.a
+addlib libvorbisenc.a
+addlib libvorbisfile.a
+save
+end
+
+

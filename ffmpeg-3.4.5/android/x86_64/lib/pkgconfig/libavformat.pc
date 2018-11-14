@@ -1,0 +1,14 @@
+prefix=/home/hsyuan/lab/ffmpeg-binary-android/build_scripts/armeabi-v7a
+exec_prefix=${prefix}
+libdir=/home/hsyuan/lab/ffmpeg-binary-android/build_scripts/armeabi-v7a/lib
+includedir=/home/hsyuan/lab/ffmpeg-binary-android/build_scripts/armeabi-v7a/include
+
+Name: libavformat
+Description: FFmpeg container format library
+Version: 57.83.100
+Requires: libavcodec >= 57.107.100, libavutil >= 55.78.100
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lavformat -L/home/hsyuan/lab/ffmpeg-binary-android/build_scripts/armeabi-v7a/lib -lvorbisenc -lvorbis -lm -logg -L/home/hsyuan/lab/ffmpeg-binary-android/build_scripts/armeabi-v7a/lib -lvorbis -lm -logg -L/home/hsyuan/lab/ffmpeg-binary-android/build_scripts/armeabi-v7a/lib -lm -lshine -L/home/hsyuan/lab/ffmpeg-binary-android/build_scripts/armeabi-v7a/lib -lopus -lm -L/home/hsyuan/lab/ffmpeg-binary-android/build_scripts/armeabi-v7a/lib -lopus -lm -lmp3lame -lm -lz -pthread -pthread
+Libs.private: 
+Cflags: -I${includedir}
