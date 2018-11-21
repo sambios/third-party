@@ -2,6 +2,7 @@
 #define SOCKET_UWS_H
 
 #include "Networking.h"
+#include <thread>
 
 namespace uS {
 
@@ -107,7 +108,7 @@ protected:
 
     void changePoll(Socket *socket) {
         if (!threadSafeChange(nodeData->loop, this, socket->getPoll())) {
-            if (socket->nodeData->tid != pthread_self()) {
+            if (socket->nodeData->tid != std::this_thread::get_id()) {
                 socket->nodeData->asyncMutex->lock();
                 socket->nodeData->changePollQueue.push_back(socket);
                 socket->nodeData->asyncMutex->unlock();

@@ -1,0 +1,6 @@
+Name: Jrtplib 
+Description: A full featured RTP library
+Requires:
+Version: 3.11.1
+Libs:  -L/Users/hsyuan/clients/main/third_party/jrtplib/mac/lib -ljrtp
+Cflags:  -I/Users/hsyuan/clients/main/third_party/jrtplib/mac/include

@@ -29,7 +29,7 @@
 #include <pthread.h>
 #endif
 
-#include "cmdutils.h"
+
 
 #include "libavformat/avformat.h"
 #include "libavformat/avio.h"
@@ -47,6 +47,8 @@
 #include "libavutil/threadmessage.h"
 
 #include "libswresample/swresample.h"
+
+#include "cmdutils.h"
 
 #define VSYNC_AUTO       -1
 #define VSYNC_PASSTHROUGH 0

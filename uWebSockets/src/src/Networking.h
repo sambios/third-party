@@ -38,8 +38,8 @@
 #define __thread __declspec(thread)
 #define htobe64(x) htonll(x)
 #define be64toh(x) ntohll(x)
-#define pthread_t DWORD
-#define pthread_self GetCurrentThreadId
+//#define pthread_t DWORD
+//#define pthread_self GetCurrentThreadId
 #endif
 
 #ifdef LIBUWS_EXPORTS
@@ -215,7 +215,7 @@ struct WIN32_EXPORT NodeData {
     SSL_CTX *clientContext;
 
     Async *async = nullptr;
-    pthread_t tid;
+    std::thread::id tid;
 
     std::recursive_mutex *asyncMutex;
     std::vector<Poll *> transferQueue;
