@@ -9,9 +9,11 @@ cp -f groupsock/*.a $DEST_DIR/lib/
 cp -f liveMedia/*.a $DEST_DIR/lib/
 cp -f UsageEnvironment/*.a $DEST_DIR/lib/
 
+if [ ! -d "$DEST_DIR/include" ]; then
+    mkdir -p $DEST_DIR/include
+fi
 
-
-cp -a UsageEnvironment/include/* $DEST_DIR/include/
-cp -a groupsock/include/* $DEST_DIR/include/
-cp -a BasicUsageEnvironment/include/* $DEST_DIR/include/
-cp -a liveMedia/include/* $DEST_DIR/include/
+cp -f  UsageEnvironment/include/* $DEST_DIR/include/
+cp -f  groupsock/include/* $DEST_DIR/include/
+cp -f  BasicUsageEnvironment/include/* $DEST_DIR/include/
+cp -f  liveMedia/include/* $DEST_DIR/include/
